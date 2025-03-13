@@ -27,11 +27,17 @@ form {
 
     button {
         background-color: black;
-        border: none;
+        border: 1px solid black;
         border-radius: 5px;
         color: white;
-        padding: 11px 33px;
+        padding: 10px 33px;
         cursor: pointer;
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    button:hover {
+        background-color: white;
+        color: black;
     }
 }
 

@@ -8,17 +8,14 @@ export default function Main() {
     return <li key={ingredient}>{ingredient}</li>
   })
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+  const addIngredient = (formData) => {
     const newIngredient = formData.get("ingredient");
-    console.log(newIngredient);
     setIngredients(prevIngredients => [...prevIngredients, newIngredient])
   }
 
   return (
     <main>
-    <form action="" onSubmit={handleSubmit}>
+    <form action={addIngredient}>
       <input
         type="text"
         placeholder="e.g. oregano"
