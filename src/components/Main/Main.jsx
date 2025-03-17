@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./main.css";
 import { getRecipeFromMistral } from "../../ai";
+import ReactMarkdown from "react-markdown";
 
 export default function Main() {
   const [ingredients, setIngredients] = useState([]);
@@ -74,9 +75,10 @@ function IngredientsList({ ingredients, setIngredients, recipe, setRecipe, getRe
 
 function ClaudeRecipe({ recipe }) {
   return (
-    <>
-    { recipe }
-    </>
+    <section className="suggested-recipe-container" aria-live="polite">
+      <h2>Chef Claude recommends:</h2>
+      <ReactMarkdown>{ recipe }</ReactMarkdown>
+    </section>
   );
 }
 

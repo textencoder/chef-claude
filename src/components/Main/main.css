@@ -1,10 +1,3 @@
-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 form {
     width: 100%;
     height: 8rem;
@@ -40,37 +33,3 @@ form {
         color: black;
     }
 }
-
-section {
-    width: 60%;
-    padding: 10px;
-
-    ul {
-        width: 100%;
-        padding: 25px;
-    }
-}
-
-.get-recipe-container {
-    background-color: rgb(224, 224, 224);
-    padding: 30px;
-    display: flex;
-    justify-content: space-between;
-    border-radius: 10px;
-
-    p {
-        font-size: 0.85rem;
-        color: rgb(100, 100, 100);
-    }
-
-    button {
-        background-color: rgb(210, 97, 84);
-        border: none;
-        border-radius: 5px;
-        padding: 15px 20px;
-        color: white;
-        cursor: pointer;
-        align-self: center;
-    }
-}
-
