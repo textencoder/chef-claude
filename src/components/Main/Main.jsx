@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./main.css";
 import { getRecipeFromMistral } from "../../ai";
 import ReactMarkdown from "react-markdown";
@@ -7,9 +7,17 @@ export default function Main() {
   const [ingredients, setIngredients] = useState([]);
   const [recipe, setRecipe] = useState(false);
 
+  const recipeSection = useRef(null);
+
+  useEffect(() => {
+    if (recipe !== "" && recipeSection.current !== null) {
+      recipeSection.current.scrollIntoView({behavior: "smooth"});
+    }
+  }, [recipe])
+
   async function getRecipe() {
     const recipeMarkdown = await getRecipeFromMistral(ingredients)
-    setRecipe(recipeMarkdown)
+    setRecipe(recipeMarkdown);
   }
 
   const addIngredient = (formData) => {
@@ -37,6 +45,7 @@ export default function Main() {
           recipe={recipe}
           setRecipe={setRecipe}
           getRecipe={getRecipe}
+          ref={recipeSection}
         />
       )}
 
@@ -45,7 +54,7 @@ export default function Main() {
   );
 }
 
-function IngredientsList({ ingredients, setIngredients, recipe, setRecipe, getRecipe }) {
+function IngredientsList({ ingredients, setIngredients, recipe, setRecipe, getRecipe, ref }) {
   const ingredientsListItems = ingredients.map((ingredient) => {
     return <li key={ingredient}>{ingredient}</li>;
   });
@@ -61,7 +70,7 @@ function IngredientsList({ ingredients, setIngredients, recipe, setRecipe, getRe
       </ul>
 
       {ingredients.length > 3 && (
-        <div className="get-recipe-container">
+        <div className="get-recipe-container" ref={ref}>
           <div>
             <h3>Ready for a recipe?</h3>
             <p>Generate a recipe from your list of ingredients.</p>
